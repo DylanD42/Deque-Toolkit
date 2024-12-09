@@ -8,8 +8,8 @@ using namespace std;
 
 class deque{
  private:
-  int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_from_back;
-  static const int block_size = 16;
+  int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_to_back;
+  static const int block_size = 6;
   int ** blockmap;
   void resize();
  public:
