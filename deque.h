@@ -9,6 +9,7 @@ using namespace std;
 class deque{
  private:
   int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_to_back;
+  int frontRow, backRow;
   static const int block_size = 6;
   int ** blockmap;
   void resize();

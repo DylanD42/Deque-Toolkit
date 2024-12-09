@@ -4,11 +4,11 @@ CFLAGS = -c -Wall -Wextra
 
 all: $(TARGET)
 
-$(TARGET): deque.o main.o
-	$(CC) -g -Wall -Wextra -o $(TARGET) main.o deque.o
+$(TARGET): dequeTest.o main.o
+	$(CC) -g -Wall -Wextra -o $(TARGET) main.o dequeTest.o
 
-deque.o: deque.cpp deque.h
-	$(CC) $(CFLAGS) deque.cpp
+deque.o: dequeTest.cpp deque.h
+	$(CC) $(CFLAGS) dequeTest.cpp
 
 main.o: main.cpp
 	$(CC) $(CLFAGS) -c main.cpp

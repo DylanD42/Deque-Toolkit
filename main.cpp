@@ -15,18 +15,24 @@ int main() {
   //plsWork.push_back(3);
   //plsWork.push_back(4);
   
-  plsWork.push_back(4);
+  // plsWork.push_back(7);
+  // plsWork.push_back(7);
+  //plsWork.push_back(7);
+  
   plsWork.push_front(10);
   plsWork.push_front(12);
   plsWork.push_front(12);
   plsWork.push_front(12);
   plsWork.push_front(12);
-  plsWork.push_back(4);
-  plsWork.push_back(4);
-  plsWork.push_back(4);
-  plsWork.push_back(4);
-  plsWork.push_back(4);
+  plsWork.push_front(12);
+  plsWork.push_front(12);
+  plsWork.push_front(12);
   
+  //plsWork.push_back(4);
+  //plsWork.push_back(4);
+  //plsWork.push_back(4);
+  //plsWork.push_back(4);
+  //plsWork.push_back(4);
   
   
   plsWork.print();

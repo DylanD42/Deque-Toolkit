@@ -7,7 +7,7 @@ using namespace std;
 deque::deque(){
   front_ptr = NULL;
   back_ptr = NULL;
-  rows = 0;
+  rows = frontRow = backRow = 0;
   num_of_elements = 0;
   blockmap = new int*[rows];
 }
@@ -20,15 +20,16 @@ deque::~deque(){
 
 void deque::resize(){
   if(front_ptr == NULL && back_ptr == NULL){
-    rows = 1;
-    
+    rows = frontRow = backRow = 1;
+     // set to 1 for math later
     blockmap = new int*[rows];
     for (int i = 0; i < rows; i++){
       blockmap[i] = new int[block_size];
     }
-    //front_ptr = back_ptr = &blockmap[0][(block_size/2)+1];
+    front_ptr = back_ptr = &blockmap[0][(block_size/2)];
   }
   else {
+    
     int ** temp_blockmap;
     temp_blockmap = new int* [rows + 2]; // could change to *2 later
 
@@ -42,60 +43,46 @@ void deque::resize(){
     blockmap = temp_blockmap;
 
     rows = rows+2;
+    frontRow = 1;
   }
-
+  //frontRow = 1;
+  cout << "rows: " << rows << " front row: " << frontRow <<endl;
+  frontRow = (rows/(2*frontRow));
+  cout << "new front row: " << frontRow <<endl;
+  
 }
 
 void deque::pop_front(){}
 
 void deque::pop_back(){}
 //front_ptr == NULL && back_ptr == NULL
+
 void deque::push_front(int value){
-  if(front_ptr == NULL && back_ptr != NULL){
-    cout << "test";
-    if(rows = 1){
-      blockmap[0][(block_size/2)-1] = value;
-      front_ptr = &blockmap[0][(block_size/2)-1];
-    }
-    else {
-      blockmap[(rows-1)/2][(block_size/2)-1] = value;
-      front_ptr = &blockmap[(rows-1)/2][(block_size/2)-1];
-    }
-    distance_from_front = (block_size/2)-1;
-    distance_from_front--;
-  }
-  else if(front_ptr == NULL && back_ptr == NULL){
-    cout << "Resizing" << endl;
+  if(front_ptr == NULL && back_ptr == NULL){
+    cout << "Resize NULL" << endl;
     resize();
-    cout << "setting value at: ";
-    blockmap[0][block_size/2] = value;
-    front_ptr = &blockmap[0][block_size/2]; // (cout << *front_ptr) for value
-    cout << front_ptr << " with the value of: " << *front_ptr;
-    distance_from_front = (block_size/2)-1;
-    cout << " " << distance_from_front + 1 << " away from front" << endl;
-    cout << " " << distance_from_front << " away from front" << endl;
-  } // the +1 is to show how many physical elements away not the index away
-  else if (distance_from_front > -1){
-    cout << "setting value at: ";
-    blockmap[0][distance_from_front] = value;
-    front_ptr = &blockmap[0][distance_from_front]; // (cout << *front_ptr) for value
-    cout << front_ptr << " with the value of: " << *front_ptr;
-    distance_from_front--;
-    cout << " " << distance_from_front + 1 << " away from front" << endl;
-    cout << " " << distance_from_front << " away from front" << endl;
+    *front_ptr = value;
+    cout << "setting value at: " << front_ptr << " with the value of: " << *front_ptr << endl;
+    front_ptr = front_ptr - 1;
+  }
+  else if(front_ptr >= &blockmap[frontRow][0]){
+    
+    *front_ptr = value;
+    cout << "setting value at: " << front_ptr << " with the value of: " << *front_ptr << endl;
+    front_ptr = front_ptr - 1;
+    cout << front_ptr << " " << &blockmap[frontRow][0] << endl;
   }
   else{
-    cout << "resizing" << endl;
+    cout << "Resize" << endl;
     resize();
-    distance_from_front = block_size;
-    cout << front_ptr << " with the value of: " << *front_ptr;
-    blockmap[0][distance_from_front-1] = value;
-    front_ptr = &blockmap[0][distance_from_front]; // (cout << *front_ptr) for value                      cout << front_ptr << " with the value of: " << *front_ptr;
-    distance_from_front--;
-    cout << " " << distance_from_front + 1 << " away from front" << endl;
-    cout << " " << distance_from_front << " away from front" << endl;
+    // rows / 2*frontrow
+    //front_ptr = &block_size[]
+    
+    front_ptr = &blockmap[frontRow-1][block_size-1]; 
+    *front_ptr = value;
+    cout << "setting value at: " << front_ptr << " with the value of: " << *front_ptr << endl;
+    front_ptr = front_ptr - 1;
   }
-  cout << "rows: " << rows << endl;
 }
 
 void deque::push_back(int value){
