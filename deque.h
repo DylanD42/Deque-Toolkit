@@ -8,24 +8,25 @@ using namespace std;
 
 class deque{
  private:
-  int *front_ptr, *back_ptr, rows;
-  static const int block_size = 4;
+  int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_from_back;
+  static const int block_size = 16;
   int ** blockmap;
   void resize();
  public:
   deque();
   ~deque();
-  void push_front();
+  void push_front(int value);
   void pop_front();
-  void push_back();
+  void push_back(int value);
   void pop_back();
   int front();
   int back();
   bool empty();
   int size();
+  void print();
   // [] operator
   
-}
+};
 
 
 #endif //DEQUE_H
