@@ -6,15 +6,19 @@
 
 using namespace std;
 
-class deque{
+class deque {
  private:
-  int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_to_back;
-  int frontRowIndex, backRowIndex;
-  int added_front_rows, added_back_rows;
-  static const int block_size = 16;
-  int ** blockmap;
-  int the_size = 0;
+  int rows;
+  int block_size;
+  int frontRow;
+  int backRow;
+  int frontColumn;
+  int backColumn;
+  int num_of_elements;
+  int** blockmap; 
+
   void resize();
+  
  public:
   deque();
   ~deque();
@@ -24,8 +28,8 @@ class deque{
   void pop_back();
   int front();
   int back();
-  int size();
   bool empty();
+  int size();
   void print();
   // [] operator
   
