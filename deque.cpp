@@ -1,4 +1,4 @@
- //deque cpp file
+//deque cpp file
 #include "deque.h"
 #include <iostream>
 
