@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Deque Toolkit Group Assignment
 
 This project implements a double-ended queue (deque) data structure!
@@ -34,5 +33,3 @@ As expected with the guidelines for the assignment, we implemented:
 After cloning the repo, you can test by running the following command: ./run
 
 NOTE: Unfortunately, we weren't able to implement the operator[] for random access of elements. 
-=======
->>>>>>> master
