@@ -54,12 +54,42 @@ void deque::resize(){
   
 }
 
-void deque::pop_front(){}
+void deque::pop_front(){
+  the_size--;
+  if(front_ptr == &blockmap[frontRowIndex-1][block_size-1]){
+    *front_ptr = NULL;
+    frontRowIndex++;
+    front_ptr = &blockmap[frontRowIndex-1][0];
+    front_ptr++;
+  } // in the mid/start
+  else{
+    *front_ptr = NULL;
+    front_ptr++;
+  } // at the end and wrap around
+}
 
-void deque::pop_back(){}
+void deque::pop_back(){
+  the_size--;
+  if(back_ptr == &blockmap[backRowIndex-1][0]){
+    
+    *back_ptr = NULL;
+    backRowIndex--;
+    back_ptr = &blockmap[backRowIndex-1][block_size-1];
+    //back_ptr--;
+  } // in the mid/start
+  else{
+    
+    
+    *back_ptr = NULL;
+    back_ptr--;
+  } // at the end and wrap around
+}
+    
+  
 //front_ptr == NULL && back_ptr == NULL
 
 void deque::push_front(int value){
+  the_size++;
   if(front_ptr == NULL && back_ptr == NULL){
     cout << "Resize NULL" << endl;
     resize();
@@ -90,6 +120,7 @@ void deque::push_front(int value){
 }
 
 void deque::push_back(int value){
+  the_size++;
   if(front_ptr != NULL && back_ptr == NULL){
     if(rows = 1){
       blockmap[0][(block_size/2)+1] = value;
@@ -132,11 +163,17 @@ if(front_ptr == NULL && back_ptr == NULL){
   }
 }
 
-int deque::front(){}
+int deque::front(){
+  return *front_ptr;
+}
 
-int deque::back(){}
+int deque::back(){
+  return *back_ptr;
+}
 
-int deque::size(){}
+int deque::size(){
+  return the_size;
+}
 
 bool deque::empty(){
   if(front_ptr == NULL && back_ptr == NULL) {

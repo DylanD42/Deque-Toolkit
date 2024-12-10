@@ -13,6 +13,7 @@ class deque{
   int added_front_rows, added_back_rows;
   static const int block_size = 16;
   int ** blockmap;
+  int the_size = 0;
   void resize();
  public:
   deque();
@@ -23,8 +24,8 @@ class deque{
   void pop_back();
   int front();
   int back();
-  bool empty();
   int size();
+  bool empty();
   void print();
   // [] operator
   
