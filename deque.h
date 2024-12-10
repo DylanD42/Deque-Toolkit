@@ -6,13 +6,19 @@
 
 using namespace std;
 
-class deque{
+class deque {
  private:
-  int *front_ptr, *back_ptr, rows, num_of_elements, distance_from_front, distance_to_back;
-  int frontRow, backRow;
-  static const int block_size = 6;
-  int ** blockmap;
+  int rows;
+  int block_size;
+  int frontRow;
+  int backRow;
+  int frontColumn;
+  int backColumn;
+  int num_of_elements;
+  int** blockmap; 
+
   void resize();
+  
  public:
   deque();
   ~deque();
